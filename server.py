@@ -30,7 +30,7 @@ load_dotenv(Path(__file__).resolve().parent / ".env")
 
 # ── 初始化 MCP server ─────────────────────────────────────────
 mcp = FastMCP(
-    name="kyb-register",
+    name="vansiqi-mcp",
     instructions=(
         "Global business registration verification for AI agents. "
         "Query official government registers across multiple jurisdictions "
@@ -225,7 +225,7 @@ def query_registration(
 
 # ── 入口 ──────────────────────────────────────────────────────
 def main() -> None:
-    parser = argparse.ArgumentParser(description="kyb-register MCP server")
+    parser = argparse.ArgumentParser(description="vansiqi-mcp MCP server")
     parser.add_argument("--transport", choices=["stdio", "sse"], default="stdio")
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=8000)

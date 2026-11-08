@@ -1,4 +1,4 @@
-# kyb-register
+# vansiqi-mcp
 
 > Global business registration verification for AI agents — unified MCP server built on official government open data.
 
@@ -36,7 +36,7 @@ Add to `claude_desktop_config.json`:
 ```json
 {
   "mcpServers": {
-    "kyb-register": {
+    "vansiqi-mcp": {
       "command": "python",
       "args": ["path/to/server.py"],
       "env": {
