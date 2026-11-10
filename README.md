@@ -4,20 +4,27 @@
 
 ## What this is
 
-A single MCP tool that lets any AI agent query business registry records across **multiple jurisdictions** through a **unified interface**. Data is sourced directly from government open-data portals — no third-party aggregator, no API keys required (except UK Companies House, which is free to register).
+A single MCP tool that lets any AI agent query business registry records across **multiple jurisdictions** through a **unified interface**. All queries run on a **local snapshot of official bulk records** (`kyb.db`, 24.6M rows) — the exact same dataset that powers [vansiqi.com](https://vansiqi.com). No third-party aggregator, no API keys, no upstream network calls at query time.
 
-Built with a **GEO adapter architecture**: each jurisdiction gets a small adapter that normalizes its quirks into one consistent output schema. Adding a new country is one new file, no changes to existing code.
+Built with a **GEO adapter architecture**: each jurisdiction maps to one row-source in the local database, normalized into one consistent output schema. Adding a new country is one new ingestion pipeline, no changes to query code.
 
 ## Supported jurisdictions
 
-| Code | Jurisdiction | Source | Records | Auth |
-|------|-------------|--------|---------|------|
-| `SG` | Singapore | ACRA via data.gov.sg | ~1.5M | None |
-| `AU` | Australia | ASIC via data.gov.au | ~3.7M | None |
-| `US-FL` | USA (Florida) | Sunbiz SFTP | ~1.3M | None (public creds) |
-| `UK` | United Kingdom | Companies House API | ~5.5M | Free key (1 min, see below) |
+| Code | Jurisdiction | Source (snapshot) | Records | Auth |
+|------|-------------|-------------------|---------|------|
+| `SG` | Singapore | ACRA via data.gov.sg | 1,938,342 | None |
+| `AU` | Australia | ASIC via data.gov.au | 4,018,252 | None |
+| `US-FL` | USA (Florida) | Sunbiz SFTP | 12,987,600 | None |
+| `UK` | United Kingdom | Companies House bulk | 5,704,711 | None |
 
-Total coverage: **~12M+ entities**.
+Total coverage: **24,648,905 entities** (snapshot as of 2026-10-23).
+
+> **Snapshot semantics**: data reflects the official bulk records as of the
+> ingestion date. Every result carries `last_verified` (record snapshot date)
+> and `source_url` (official register link) — verify time-critical decisions
+> against the official register. Snapshot refreshes are driven by the update
+> pipeline; new registry values outside the normalization dictionaries fall
+> through with their raw codes preserved.
 
 ## Installation
 
@@ -38,14 +45,14 @@ Add to `claude_desktop_config.json`:
   "mcpServers": {
     "vansiqi-mcp": {
       "command": "python",
-      "args": ["path/to/server.py"],
-      "env": {
-        "CH_API_KEY": "your_free_companies_house_key"
-      }
+      "args": ["path/to/server.py"]
     }
   }
 }
 ```
+
+> **Note**: `kyb.db` must be present at `data/kyb.db` relative to `server.py`.
+> No API keys or environment variables are required.
 
 ### In any MCP client (stdio)
 
@@ -58,10 +65,6 @@ python server.py
 ```bash
 python server.py --transport sse --host 0.0.0.0 --port 8000
 ```
-
-### UK Companies House API key (free)
-
-Register at [developer.company-information.service.gov.uk/manage-applications](https://developer.company-information.service.gov.uk/manage-applications) — takes 1 minute. No credit card required.
 
 ## Tools
 
@@ -107,19 +110,22 @@ Query a business entity record from an official government register.
       "industry_code": "51101",
       "industry_description": "PASSENGER AIR TRANSPORT NSC",
       "officers_count": null,
-      "data_source": "SG ACRA data.gov.sg",
-      "last_verified": "2026-10-14",
+      "data_source": "SG ACRA (via data.gov.sg bulk snapshot)",
+      "last_verified": "2026-10-23",
+      "source_url": "https://www.bizfile.gov.sg/ (UEN 01234567X)",
       "raw": { /* original fields from the source */ }
     }
   ]
 }
 ```
 
-Status enum: `Active`, `Inactive`, `Dissolved`, `Merged`, `Liquidation`, `Unknown`
+Status enum: `Active`, `Inactive`, `Dissolved`, `Merged`, `Liquidation`, `Unknown`.
+Registry values outside the normalization dictionaries preserve their raw codes
+in the `raw` field (gettext-style fallback, never silently dropped).
 
 ### `list_supported_countries`
 
-Returns all queryable jurisdictions with data-source info, record count, and update frequency. Call this first if unsure which `country` code to use.
+Returns all queryable jurisdictions with data-source info, exact record counts, and the snapshot cutoff date. Call this first if unsure which `country` code to use.
 
 ## Architecture
 
@@ -127,20 +133,23 @@ Returns all queryable jurisdictions with data-source info, record count, and upd
 server.py              ← FastMCP app, exposes 2 tools
 normalizers.py         ← Unified schema + cross-GEO status/type mapping
 adapters/
-  sg_acra.py          ← Singapore ACRA (CKAN JSON API)
-  au_asic.py          ← Australia ASIC (CSV download + local scan)
-  us_fl_sunbiz.py     ← US Florida Sunbiz (SFTP quarterly snapshots)
-  uk_companies_house.py ← UK Companies House (REST API, free key)
+  kyb_db.py           ← Single data layer: read-only SQLite over kyb.db
+dictionaries/
+  {gb,sg,au,us_fl}.yml ← Official enum dictionaries (full DISTINCT coverage)
+data/
+  kyb.db              ← 24,648,905 rows, 4 jurisdictions (snapshot)
 ```
 
-Each adapter implements two methods:
+One adapter class (`KybDBAdapter`) serves all four jurisdictions: exact
+registration-number lookup via the UNIQUE index (~1 ms) and full-text name
+search via FTS5 with bm25 ranking (~100 ms).
 
 ```python
 search_by_name(name: str, limit: int) -> list[dict]
 get_by_number(number: str) -> dict | None
 ```
 
-Raw source data flows through `normalizers.build_unified_record()` which translates country-specific fields into the unified schema before returning to the agent.
+Raw source rows flow through `normalizers.build_unified_record()` which translates country-specific fields into the unified schema before returning to the agent, with per-GEO normalization dictionaries (`dictionaries/*.yml`) mapping every official status/type enum to its normalized value.
 
 ## Why this exists
 
