@@ -1,0 +1,56 @@
+# dictionaries/gb.yml — UK Companies House 翻译字典
+# 词汇表来源：kyb.db 全量 SELECT DISTINCT（2026-10-26，5,704,711 行）
+# EN 侧：Companies House bulk 原词（官方无状态枚举字典；大小写变体在 EN 显示层规范化，raw 保留原词）
+# ZH 侧：我方译名（官方无中文版）
+# industry 策略：SIC 码原词+官方描述展示，不做全量翻译（官方描述已是英文人话）
+meta:
+  jurisdiction: gb
+  registry: Companies House
+  licence: 'OGL v3.0 (attribution: "Contains public sector information licensed under the Open Government Licence v3.0.")'
+  generated: 2026-10-26
+  fallback: dict-miss -> show raw code as-is with 'untranslated' marker (gettext-style default)
+  coverage: baseline = full SELECT DISTINCT at 2026-10-26; every snapshot refresh re-runs DISTINCT, new values flow into fallback until translated
+status:
+  Active: { en: Active, zh: 正常存续（在营） }
+  Active - Proposal to Strike off: { en: Active — proposal to strike off, zh: 存续中，已进入除名程序 }
+  Liquidation: { en: In liquidation, zh: 清算中 }
+  In Administration: { en: In administration, zh: 接管程序中 }
+  Live but Receiver Manager on at least one charge: { en: Live but receiver manager on at least one charge, zh: 在营，但已就至少一项担保任命接管人及经理人 }
+  Voluntary Arrangement: { en: Voluntary arrangement, zh: 自愿安排程序中 }
+  In Administration/Administrative Receiver: { en: In administration / administrative receiver, zh: 接管程序中／行政接管人 }
+  RECEIVERSHIP: { en: Receivership, zh: 接管程序中 }
+  ADMINISTRATION ORDER: { en: Administration order, zh: 行政接管令 }
+  ADMINISTRATIVE RECEIVER: { en: Administrative receiver, zh: 行政接管人 }
+  In Administration/Receiver Manager: { en: In administration / receiver manager, zh: 接管程序中／接管人及经理人 }
+  RECEIVER MANAGER / ADMINISTRATIVE RECEIVER: { en: Receiver manager / administrative receiver, zh: 接管人及经理人／行政接管人 }
+  VOLUNTARY ARRANGEMENT / RECEIVER MANAGER: { en: Voluntary arrangement / receiver manager, zh: 自愿安排／接管人及经理人 }
+  VOLUNTARY ARRANGEMENT / ADMINISTRATIVE RECEIVER: { en: Voluntary arrangement / administrative receiver, zh: 自愿安排／行政接管人 }
+entity_type:
+  Private Limited Company: { en: Private limited company, zh: 私人有限公司 }
+  PRI/LTD BY GUAR/NSC (Private, limited by guarantee, no share capital): { en: Private limited by guarantee, no share capital, zh: 私人担保有限公司（无股本） }
+  Limited Partnership: { en: Limited partnership, zh: 有限合伙 }
+  Limited Liability Partnership: { en: Limited liability partnership, zh: 有限责任合伙（LLP） }
+  Community Interest Company: { en: Community interest company, zh: 社区利益公司（CIC） }
+  Charitable Incorporated Organisation: { en: Charitable incorporated organisation, zh: 慈善注册组织（CIO） }
+  PRI/LBG/NSC (Private, Limited by guarantee, no share capital, use of 'Limited' exemption): { en: Private limited by guarantee, no share capital (use of 'Limited' exemption), zh: 私人担保有限公司（无股本，豁免“有限”字样） }
+  Overseas Entity: { en: Overseas entity, zh: 海外实体 }
+  Other company type: { en: Other company type, zh: 其他公司类型 }
+  Registered Society: { en: Registered society, zh: 注册社团 }
+  Scottish Charitable Incorporated Organisation: { en: Scottish charitable incorporated organisation, zh: 苏格兰慈善注册组织（SCIO） }
+  Private Unlimited Company: { en: Private unlimited company, zh: 私人无限公司 }
+  Public Limited Company: { en: Public limited company, zh: 公众有限公司（PLC） }
+  Royal Charter Company: { en: Royal charter company, zh: 皇家特许公司 }
+  Investment Company with Variable Capital: { en: Investment company with variable capital, zh: 可变资本投资公司 }
+  United Kingdom Economic Interest Grouping: { en: UK economic interest grouping, zh: 英国经济利益集团 }
+  Scottish Partnership: { en: Scottish partnership, zh: 苏格兰合伙 }
+  Industrial and Provident Society: { en: Industrial and provident society, zh: 工业与互助储蓄协会 }
+  Private Unlimited: { en: Private unlimited, zh: 私人无限（变体） }
+  Investment Company with Variable Capital(Umbrella): { en: Investment company with variable capital (umbrella), zh: 可变资本投资公司（伞形） }
+  Old Public Company: { en: Old public company, zh: 旧公众公司 }
+  PRIV LTD SECT. 30 (Private limited company, section 30 of the Companies Act): { en: Private limited company (Companies Act s.30), zh: 私人有限公司（《公司法》第 30 条） }
+  Investment Company with Variable Capital (Securities): { en: Investment company with variable capital (securities), zh: 可变资本投资公司（证券） }
+  United Kingdom Societas: { en: UK Societas, zh: 英国 Societas（欧盟跨境形式） }
+  Protected Cell Company: { en: Protected cell company, zh: 独立单元公司（PCC） }
+  Other Company Type: { en: Other company type, zh: 其他公司类型（变体） }
+  Further Education and Sixth Form College Corps: { en: Further education and sixth form college corporation, zh: 继续教育与第六学级学院法人 }
+  Converted/Closed: { en: Converted / closed, zh: 已转换／已关闭 }

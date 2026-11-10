@@ -1,0 +1,36 @@
+# dictionaries/au.yml — 澳大利亚 ASIC 翻译字典
+# 词汇表来源：kyb.db 全量 SELECT DISTINCT（2026-10-26，4,018,252 行）
+# EN 侧：ASIC 官方码表（状态前 4 码=ASIC 官方实锤；类型/长尾=多来源共识，含 ASIC extract PDF 旁证）
+# ZH 侧：我方译名（ASIC 无官方中文版）
+# 置信分级：official=asic.gov.au/legislation.gov.au 实锤；consensus=多来源共识（Confirm 代码表 + businessapi Table 0013 + ASIC extract PDF）
+# industry 策略：Class/Sub Class 原词展示（常见码翻译见 class 节）；全量码表见 Confirm 代码表
+meta:
+  jurisdiction: au
+  registry: ASIC (via ABR)
+  licence: 无明示开放许可——页面需标注来源+日期+“非官方认证摘录，数据可能过时，以 ABR 为准”；不得暗示官方背书
+  source_url: https://www.abr.business.gov.au/Home/Disclaimer
+  status_source: https://www.asic.gov.au/for-finance-professionals/registered-liquidators/your-ongoing-obligations-as-a-registered-liquidator/external-administration-controller-appointments-and-schemes-of-arrangement-most-commonly-lodged-forms/flowchart-3-liquidator-in-a-court-ordered-winding-up/
+  generated: 2026-10-26
+  fallback: dict-miss -> show raw code as-is with 'untranslated' marker (gettext-style default)
+  coverage: baseline = full SELECT DISTINCT at 2026-10-26; every snapshot refresh re-runs DISTINCT, new values flow into fallback until translated
+status:
+  REGD: { en: Registered, zh: 注册在册, conf: official }
+  DRGD: { en: Deregistered, zh: 已注销, conf: official }
+  SOFF: { en: Strike-off action in progress, zh: 除名程序进行中, conf: official }
+  EXAD: { en: Under external administration and/or controller appointed, zh: 外部管理程序中／已委任接管人, conf: official }
+  NOAC: { en: Not active, zh: 不活跃（多为 1991 年前老公司）, conf: consensus }
+  DISS: { en: Dissolved by special act of parliament, zh: 依议会特别法解散, conf: consensus }
+entity_type:
+  APTY: { en: Australian proprietary company, zh: 澳大利亚私人有限公司, conf: consensus }
+  APUB: { en: Australian public company, zh: 澳大利亚公众公司, conf: consensus }
+  FNOS: { en: Foreign company (overseas), zh: 外国公司（依《公司法》注册的境外公司）, conf: consensus }
+  RACN: { en: Registered Australian body, zh: 注册澳大利亚团体（获发 ARBN，非公司形态）, conf: consensus }
+  CCIV: { en: Corporate Collective Investment Vehicle, zh: 公司集合投资载体（CCIV，2022 年新企业形态）, conf: official }
+class:
+  LMSH: { en: Limited by shares, zh: 以股份为限, conf: consensus }
+  PROP: { en: Proprietary company, zh: 私人公司, conf: consensus }
+  LIST: { en: Listed public company, zh: 上市公众公司, conf: consensus }
+class_policy: >-
+  Class/Sub Class 字段（industry_raw）按原词展示（如 LMSH/LIST）；
+  常见码的翻译见上表，未收录码展示原词并注明「ASIC 官方分类码」。
+  全量码表参考：https://confirm.com.au/support/corporate/company-and-business-searches/codes/

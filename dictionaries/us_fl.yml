@@ -1,0 +1,29 @@
+# dictionaries/us_fl.yml — 美国佛罗里达 Sunbiz 翻译字典
+# 词汇表来源：kyb.db 全量 SELECT DISTINCT（2026-10-26，12,987,600 行）+ FL DOS 官方 file-structure 页
+# EN 侧：FL DOS 官方原文（status "A"(active)/"I"(inactive)；Filing Type 11 枚举逐条官方定义）
+# ZH 侧：我方译名（FL DOS 无官方中文版）
+# industry 策略：FL 数据无行业码字段
+meta:
+  jurisdiction: us_fl
+  registry: Florida Division of Corporations (Sunbiz)
+  licence: 公共记录（public record）；页面需标注“非官方认证副本（not a certified copy）”
+  source_url: https://dos.fl.gov/sunbiz/other-services/data-downloads/corporate-data-file/file-structure/
+  generated: 2026-10-26
+  fallback: dict-miss -> show raw code as-is with 'untranslated' marker (gettext-style default)
+  coverage: baseline = full SELECT DISTINCT at 2026-10-26; every snapshot refresh re-runs DISTINCT, new values flow into fallback until translated
+status:
+  A: { en: Active, zh: 正常存续（在营） }
+  I: { en: Inactive, zh: 非活跃（未处于正常存续状态） }
+entity_type:
+  FLAL: { en: Florida Limited Liability Co., zh: 佛罗里达有限责任公司 }
+  FORL: { en: Foreign Limited Liability Co., zh: 外国有限责任公司 }
+  DOMP: { en: Domestic Profit, zh: 本土营利公司 }
+  DOMNP: { en: Domestic Non-Profit, zh: 本土非营利组织 }
+  FORP: { en: Foreign Profit, zh: 外国营利公司 }
+  FORNP: { en: Foreign Non-Profit, zh: 外国非营利组织 }
+  DOMLP: { en: Domestic Limited Partnership, zh: 本土有限合伙 }
+  FORLP: { en: Foreign Limited Partnership, zh: 外国有限合伙 }
+  NPREG: { en: Non-Profit Registration, zh: 非营利登记 }
+  TRUST: { en: Declaration of Trust, zh: 信托声明 }
+  AGENT: { en: Designation of Registered Agent, zh: 注册代理人指定 }
+  COOP: { en: Cooperative (not listed in the official 11-type filing-type table; shown as-is), zh: 合作社（官方 11 类型表未收录，按原词展示） }

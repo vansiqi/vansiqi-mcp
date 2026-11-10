@@ -58,7 +58,7 @@ def save_prog(prog):
 
 def fetch(rid, offset):
     url = API.format(rid=rid, limit=LIMIT, offset=offset)
-    req = urllib.request.Request(url, headers={"User-Agent": "kyb-register/0.1"})
+    req = urllib.request.Request(url, headers={"User-Agent": "vansiqi-mcp/0.2"})
     with urllib.request.urlopen(req, timeout=90) as r:
         return json.loads(r.read())
 

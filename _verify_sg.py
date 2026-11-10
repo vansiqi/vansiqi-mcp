@@ -45,7 +45,7 @@ for s in samples:
             }
         )
         url = "https://data.gov.sg/api/action/datastore_search?" + params
-        req = urllib.request.Request(url, headers={"User-Agent": "kyb-register/0.1"})
+        req = urllib.request.Request(url, headers={"User-Agent": "vansiqi-mcp/0.2"})
         with urllib.request.urlopen(req, timeout=30) as r:
             j = json.loads(r.read())
         recs = j["result"]["records"]

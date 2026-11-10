@@ -26,7 +26,7 @@ t0 = time.time()
 while True:
     resume = OUT.stat().st_size if OUT.exists() else 0
     try:
-        req = urllib.request.Request(URL, headers={"User-Agent": "kyb-register/0.1"})
+        req = urllib.request.Request(URL, headers={"User-Agent": "vansiqi-mcp/0.2"})
         if resume:
             req.add_header("Range", f"bytes={resume}-")
         with urllib.request.urlopen(req, timeout=60) as r:

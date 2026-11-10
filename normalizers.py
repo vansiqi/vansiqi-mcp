@@ -3,6 +3,13 @@
 
 所有 adapter 返回的原始数据都经过这里翻译成统一格式，
 MCP server 对外只暴露这一种 schema。
+
+⚠️ 映射分工（防两套真相漂移）：
+- 主映射 = adapters/kyb_db.py 的 _STATUS_MAP / _TYPE_MAP
+  （per-GEO 精确值 → 统一枚举，来源 dictionaries/*.yml 全量 DISTINCT 对账集）
+- 本文件的 STATUS_ALIASES / ENTITY_TYPE_ALIASES 仅作为字典外新值的
+  通用兜底（gettext-style fallback），**不要**在此新增 per-GEO 条目；
+  新枚举值请进 dictionaries/*.yml 与 kyb_db.py 的映射表。
 """
 
 from __future__ import annotations

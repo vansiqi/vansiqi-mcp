@@ -34,7 +34,7 @@ def download_part(i):
     while True:
         resume = out.stat().st_size if out.exists() else 0
         try:
-            req = urllib.request.Request(url, headers={"User-Agent": "kyb-register/0.1"})
+            req = urllib.request.Request(url, headers={"User-Agent": "vansiqi-mcp/0.2"})
             if resume:
                 req.add_header("Range", f"bytes={resume}-")
             with urllib.request.urlopen(req, timeout=60) as r:

@@ -1,12 +1,31 @@
+# Python
 __pycache__/
 *.pyc
 *.pyo
+
+# Secrets / env
 .env
 .venv/
 venv/
-data/*.csv
-data/*.txt
-!data/.gitkeep
-_test*.py
+
+# Data: the authoritative DB and all raw artifacts stay out of git.
+# The raw columns inside kyb.db are the permanent record; original bulk
+# files are re-downloadable from official sources (see ingest/ pipelines).
 data/
+
+# Logs
 *.log
+
+# Generated site artifacts (rebuilt by render/ pipelines; only the
+# generator source code and the two hand-written static pages are tracked)
+render/dist/
+render/canary/
+render/preview/gb/
+render/preview/sg/
+render/preview/au/
+render/preview/us-fl/
+render/.wrangler/
+render/__pycache__/
+
+# One-off local regression helpers with machine-specific assumptions
+_test_*.py

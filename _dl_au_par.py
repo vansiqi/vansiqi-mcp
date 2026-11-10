@@ -29,7 +29,7 @@ def log(msg):
 
 
 def get_total():
-    req = urllib.request.Request(URL, method="HEAD", headers={"User-Agent": "kyb-register/0.1"})
+    req = urllib.request.Request(URL, method="HEAD", headers={"User-Agent": "vansiqi-mcp/0.2"})
     with urllib.request.urlopen(req, timeout=60) as r:
         return int(r.headers["Content-Length"])
 
@@ -44,7 +44,7 @@ def download_seg(idx, start, end):
             return
         try:
             req = urllib.request.Request(
-                URL, headers={"User-Agent": "kyb-register/0.1", "Range": f"bytes={start + have}-"}
+                URL, headers={"User-Agent": "vansiqi-mcp/0.2", "Range": f"bytes={start + have}-"}
             )
             with urllib.request.urlopen(req, timeout=60) as r:
                 ranged = r.status == 206

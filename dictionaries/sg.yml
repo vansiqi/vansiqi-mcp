@@ -1,0 +1,56 @@
+# dictionaries/sg.yml — 新加坡 ACRA 翻译字典
+# 词汇表来源：kyb.db 全量 SELECT DISTINCT（2026-10-26，1,938,342 行）
+# EN 侧：ACRA 原词（官方 bulk 数据即此形态）
+# ZH 侧：我方译名（ACRA 无官方中文版）
+# industry 策略：SSIC 码原词展示+链接 ACRA 官方 SSIC 查询页，不做全量翻译（8000+ 码无中文官方版）
+meta:
+  jurisdiction: sg
+  registry: ACRA (via data.gov.sg)
+  licence: 'Singapore Open Data Licence v1.0 (attribution: "Contains information from {dataset} accessed on {date} from data.gov.sg")'
+  generated: 2026-10-26
+  fallback: dict-miss -> show raw code as-is with 'untranslated' marker (gettext-style default)
+  coverage: baseline = full SELECT DISTINCT at 2026-10-26; every snapshot refresh re-runs DISTINCT, new values flow into fallback until translated
+status:
+  Live Company: { en: Live company, zh: 在营公司 }
+  Live: { en: Live, zh: 在营 }
+  Struck Off: { en: Struck off, zh: 已除名 }
+  Terminated: { en: Terminated, zh: 已终止 }
+  Cancelled: { en: Cancelled, zh: 已注销 }
+  Cancelled (Non-Renewal): { en: Cancelled (non-renewal), zh: 已注销（未续期） }
+  Ceased Registration: { en: Ceased registration, zh: 已停止登记 }
+  Ceased Registration (Transferred to Singapore): { en: Ceased registration (transferred to Singapore), zh: 已停止登记（迁册至新加坡） }
+  Dissolved: { en: Dissolved, zh: 已解散 }
+  Dissolved - Members Voluntary Winding Up: { en: Dissolved — members' voluntary winding up, zh: 已解散——成员自愿清盘 }
+  Dissolved - Compulsory Winding Up (Insolvency): { en: Dissolved — compulsory winding up (insolvency), zh: 已解散——强制清盘（资不抵债） }
+  Dissolved - Creditors Voluntary Winding Up: { en: Dissolved — creditors' voluntary winding up, zh: 已解散——债权人自愿清盘 }
+  Dissolved - Compulsory Winding Up: { en: Dissolved — compulsory winding up, zh: 已解散——强制清盘 }
+  Dissolved - Partner Voluntary Winding Up: { en: Dissolved — partners' voluntary winding up, zh: 已解散——合伙人自愿清盘 }
+  Dissolved - Simplified Winding Up: { en: Dissolved — simplified winding up, zh: 已解散——简易清盘 }
+  Dissolved - Pursuant to Section 212(1)(D) Of The Companies Act: { en: Dissolved — pursuant to s.212(1)(D) of the Companies Act, zh: 已解散——依《公司法》第 212(1)(D) 条 }
+  Gazetted To Be Struck Off: { en: Gazetted to be struck off, zh: 已宪报公告除名程序中 }
+  Converted To LLP: { en: Converted to LLP, zh: 已转换为有限责任合伙 }
+  Amalgamated: { en: Amalgamated, zh: 已合并 }
+  In Liquidation: { en: In liquidation, zh: 清盘中 }
+  In Liquidation - Compulsory Winding Up (Insolvency): { en: In liquidation — compulsory winding up (insolvency), zh: 清盘中——强制清盘（资不抵债） }
+  In Liquidation - Members voluntary winding up: { en: In liquidation — members' voluntary winding up, zh: 清盘中——成员自愿清盘 }
+  In Liquidation - Creditors voluntary winding up: { en: In liquidation — creditors' voluntary winding up, zh: 清盘中——债权人自愿清盘 }
+  In Liquidation - Compulsory Winding Up: { en: In liquidation — compulsory winding up, zh: 清盘中——强制清盘 }
+  In Liquidation - Simplified Winding Up: { en: In liquidation — simplified winding up, zh: 清盘中——简易清盘 }
+  In Liquidation - Partners voluntary winding up: { en: In liquidation — partners' voluntary winding up, zh: 清盘中——合伙人自愿清盘 }
+  Registration expired and has not been renewed: { en: Registration expired and not renewed, zh: 登记已到期且未续期 }
+  Cancellation In Progress: { en: Cancellation in progress, zh: 注销程序进行中 }
+  Removed (Applied To Be Revoked): { en: Removed (applied to be revoked), zh: 已移除（申请撤销） }
+  Removed (Dissolved): { en: Removed (dissolved), zh: 已移除（已解散） }
+  Live (Receiver or Receiver and Manager appointed): { en: Live (receiver or receiver and manager appointed), zh: 在营（已任命接管人或经理人） }
+  Struck Off (Early Dissolution): { en: Struck off (early dissolution), zh: 已除名（早期解散） }
+  Struck Off (Early Dissolution - simplified winding up): { en: Struck off (early dissolution — simplified winding up), zh: 已除名（早期解散——简易清盘） }
+  Suspended: { en: Suspended, zh: 已暂停 }
+  To Be Ceased: { en: To be ceased, zh: 即将终止 }
+  Under Judicial Management: { en: Under judicial management, zh: 司法管理中 }
+  Revoked (Failed To Transfer Registration): { en: Revoked (failed to transfer registration), zh: 已撤销（未能完成迁册登记） }
+entity_type:
+  Local Company: { en: Local company, zh: 本地公司 }
+  Sole Proprietorship/ Partnership: { en: Sole proprietorship / partnership, zh: 独资／合伙企业 }
+  Limited Liability Partnership: { en: Limited liability partnership, zh: 有限责任合伙（LLP） }
+  Foreign Company Branch: { en: Foreign company branch, zh: 外国公司分支机构 }
+  Limited Partnership: { en: Limited partnership, zh: 有限合伙 }
