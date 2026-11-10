@@ -1,3 +1,7 @@
+# ⚠️ ARCHIVED 2026-11-10: one-off audit/rescue script from the original
+# data-pipeline era. It reads raw bulk files that were removed from data/
+# after the kyb.db consolidation (raw columns preserve the original fields).
+# Kept as history; re-download the inputs first if you ever need to re-run.
 """Full quality audit for AU ASIC CSV (asic_companies.csv).
 Mirrors _audit_uk_sg.py standards:
   1. file size  2. header  3. full streaming row/col validation

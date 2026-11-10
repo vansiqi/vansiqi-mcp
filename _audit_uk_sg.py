@@ -1,3 +1,7 @@
+# ⚠️ ARCHIVED 2026-11-10: one-off audit/rescue script from the original
+# data-pipeline era. It reads raw bulk files that were removed from data/
+# after the kyb.db consolidation (raw columns preserve the original fields).
+# Kept as history; re-download the inputs first if you ever need to re-run.
 """Full asset audit: UK (7 zips) + SG (27 shards).
 Checks: CRC, row counts, column consistency, status distribution, duplicate sampling.
 Runtime estimate: 3-6 min. Read-only for completed files only.

@@ -27,5 +27,5 @@ render/preview/us-fl/
 render/.wrangler/
 render/__pycache__/
 
-# One-off local regression helpers with machine-specific assumptions
-_test_*.py
+# One-off local helpers with machine-specific assumptions
+_test_*.html
