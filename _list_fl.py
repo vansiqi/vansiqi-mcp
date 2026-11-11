@@ -1,3 +1,5 @@
+# NOTE: Public/PubAccess1845! is the OFFICIAL public credential published
+# by Florida DOS for everyone; see dos.fl.gov Sunbiz data-downloads page.
 """Download cor READMEs (format definitions)."""
 import paramiko
 from pathlib import Path

@@ -1,3 +1,5 @@
+# NOTE: Public/PubAccess1845! is the OFFICIAL public credential published
+# by Florida DOS for everyone; see dos.fl.gov Sunbiz data-downloads page.
 """Download cordata.zip (1.7GB) with resume + progress log."""
 import paramiko
 import os
