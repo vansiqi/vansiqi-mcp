@@ -42,6 +42,13 @@ def main():
     shutil.copy2(os.path.join(PREVIEW, "monitor.html"), os.path.join(DIST, "monitor.html"))
     shutil.copy2(os.path.join(PREVIEW, "privacy.html"), os.path.join(DIST, "privacy.html"))
 
+    # 3.5 IndexNow key file（Bing 等搜索引擎的批量提交通道验证文件）
+    #     key 固定，文件内容 = key 本身；配合 POST api.indexnow.org 使用
+    key_file = os.path.join(RENDER, "indexnow_key.txt")
+    key = open(key_file, encoding="utf-8").read().strip()
+    with open(os.path.join(DIST, f"{key}.txt"), "w", encoding="utf-8", newline="\n") as f:
+        f.write(key)
+
     # 4. index.html 落地页（最小版）
     index_html = """<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
